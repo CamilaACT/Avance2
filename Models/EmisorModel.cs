@@ -1,4 +1,4 @@
-﻿namespace Avance1.Models
+﻿namespace Avance.Models
 {
     public class EmisorModel
     {
