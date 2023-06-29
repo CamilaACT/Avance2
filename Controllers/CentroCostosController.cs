@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
+//using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 using System.Threading.Tasks;
 
 namespace Avance.Controllers
@@ -97,7 +102,60 @@ namespace Avance.Controllers
             }
 
             return await CentroCostos();
-        } 
+        }
+        [HttpPost]
+        public async Task<IActionResult> ElimAtributo(string id, string descripcion)
+        {
+            if (Request.Method == "POST")
+            {
+                try
+                {
+                    string url = $"http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosDelete?codigocentrocostos={id}&descripcioncentrocostos={descripcion}";
+                    HttpClient httpClient = new HttpClient();
+                    var response = httpClient.GetAsync(url).GetAwaiter().GetResult();
+                    response.EnsureSuccessStatusCode();
+                }
+                catch
+                {
+                    return View("Exceptiondentro", new { message = "Error al eliminar el centro de costos" });
+                }
+
+                return await CentroCostos();
+            }
+            else
+            {
+                return await CentroCostos();
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Search(string descripcion)
+        {
+            HttpClient httpClient = new HttpClient();
+            var response = await httpClient.GetAsync($"http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosSearch?descripcioncentrocostos={descripcion}");
+            var data = await response.Content.ReadAsStringAsync();
+
+            var parsedData = JsonSerializer.Deserialize<List<CentroCostos>>(data);
+            if (parsedData.Count > 0)
+            {
+                var codigo = parsedData[0].Codigo;
+                var descripcionMostrar = parsedData[0].NombreCentroCostos;
+
+                ViewData["codigo"] = codigo;
+                ViewData["NombreCentroCostos"] = descripcionMostrar;
+
+                return View("IndexBuscar");
+            }
+            else
+            {
+                // Manejar el caso en que no se encuentren resultados.
+                ViewData["codigo"] = "";
+                ViewData["NombreCentroCostos"] = "";
+
+                return View("IndexBuscar");
+            }
+        }
+
+
 
 
     }
