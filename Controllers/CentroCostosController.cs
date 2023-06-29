@@ -9,6 +9,12 @@ namespace Avance.Controllers
 {
     public class CentroCostosController : Controller
     {
+        //AQUI USAMOS SINGELTON
+        //private readonly HttpClient httpClient;
+        // public CentroCostosController()
+        // {
+        //    httpClient = new HttpClient();
+        // }
         public async Task<IActionResult> CentroCostos()
         {
             string url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosSelect";
@@ -19,7 +25,7 @@ namespace Avance.Controllers
                 {
                     var data = await response.Content.ReadAsStringAsync();
                     var centroCostos = JsonSerializer.Deserialize<IEnumerable<CentroCostos>>(data);
-                    return View("indexcentro",centroCostos);
+                    return View("indexcentro", centroCostos);
                 }
                 else
                 {
@@ -57,6 +63,43 @@ namespace Avance.Controllers
         {
             return View("IndexAgregar");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, string descripcion)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                var response = await httpClient.GetAsync($"http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosUpdate?codigocentrocostos={id}&descripcioncentrocostos={descripcion}");
+                response.EnsureSuccessStatusCode();
+            }
+            catch
+            {
+                return View("Exceptiondentro", new { message = "Error al editar el centro de costos" });
+            }
+
+            return await CentroCostos();
+        }
+
+        public async Task<IActionResult> EditCentroCostos(string id)
+        {
+            HttpClient httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosSelect");
+            var content = await response.Content.ReadAsStringAsync();
+            var data = JsonSerializer.Deserialize<IEnumerable<CentroCostos>>(content);
+
+            foreach (var datos in data)
+            {
+                if (datos.Codigo == int.Parse(id))
+                {
+                    return View("IndexEditar", datos);
+                }
+            }
+
+            return await CentroCostos();
+        } 
+
+
     }
 }
 
