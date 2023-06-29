@@ -1,4 +1,4 @@
-﻿@model List<Avance.Models.CentroCostos>
+﻿@model IEnumerable<Avance.Models.CentroCostos>
 
 @{
     ViewData["Title"] = "Centro de costos";
@@ -25,18 +25,18 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var datos in Model)
+        @foreach (var centroCosto in Model)
         {
             <tr>
-                <th scope="row">@datos</th>
-                <td>@datos</td>
-                <td>@datos</td>
+                <th scope="row">@centroCosto.Codigo</th>
+                <td>@centroCosto.NombreCentroCostos</td>
+                <td>@centroCosto.Mensaje</td>
                 <td>
-                    <form action="@Url.Action("ElimAtributo", "Home", new { id = datos })" method="post">
+                    <form action="@Url.Action("ElimAtributo", "Home", new { id = centroCosto.Codigo})" method="post">
                         @Html.AntiForgeryToken()
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
-                    <a class="btn btn-success" href="@Url.Action("EditCentroCostos", "Home", new { id = datos })">Editar</a>
+                    <a class="btn btn-success" href="@Url.Action("EditCentroCostos", "Home", new { id = centroCosto.Codigo })">Editar</a>
                 </td>
             </tr>
         }
