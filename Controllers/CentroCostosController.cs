@@ -55,7 +55,7 @@ namespace Avance.Controllers
 
         public IActionResult AddCentroDeCostos()
         {
-            return View();
+            return View("IndexAgregar");
         }
     }
 }

@@ -7,13 +7,14 @@
 <h1>Centro de costos</h1>
 
 <p>Buscar centro de costos por nombre de centro de costos:</p>
-<form action="@Url.Action("Search", "Home")" method="post">
+<form action="@Url.Action("Search", "CentroCostos")" method="post">
     @Html.AntiForgeryToken()
     <input type="text" name="descripcion" placeholder="Nombre de centro de costos">
     <button type="submit" class="btn btn-primary">Buscar</button>
 </form>
 
-<a href="@Url.Action("Agregar", "Home")" class="btn btn-primary">Agregar</a>
+<a href="@Url.Action("AddCentroDeCostos","CentroCostos")" class="btn btn-primary">Agregar</a>
+
 
 <table class="table">
     <thead class="thead-dark">
@@ -32,11 +33,11 @@
                 <td>@centroCosto.NombreCentroCostos</td>
                 <td>@centroCosto.Mensaje</td>
                 <td>
-                    <form action="@Url.Action("ElimAtributo", "Home", new { id = centroCosto.Codigo})" method="post">
+                    <form action="@Url.Action("ElimAtributo", "CentroCostos", new { id = centroCosto.Codigo})" method="post">
                         @Html.AntiForgeryToken()
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
-                    <a class="btn btn-success" href="@Url.Action("EditCentroCostos", "Home", new { id = centroCosto.Codigo })">Editar</a>
+                    <a class="btn btn-success" href="@Url.Action("EditCentroCostos", "CentroCostos", new { id = centroCosto.Codigo })">Editar</a>
                 </td>
             </tr>
         }
