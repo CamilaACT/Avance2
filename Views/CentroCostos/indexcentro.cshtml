@@ -1,0 +1,44 @@
+﻿@model List<Avance.Models.CentroCostos>
+
+@{
+    ViewData["Title"] = "Centro de costos";
+}
+
+<h1>Centro de costos</h1>
+
+<p>Buscar centro de costos por nombre de centro de costos:</p>
+<form action="@Url.Action("Search", "Home")" method="post">
+    @Html.AntiForgeryToken()
+    <input type="text" name="descripcion" placeholder="Nombre de centro de costos">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<a href="@Url.Action("Agregar", "Home")" class="btn btn-primary">Agregar</a>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Mensaje</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var datos in Model)
+        {
+            <tr>
+                <th scope="row">@datos</th>
+                <td>@datos</td>
+                <td>@datos</td>
+                <td>
+                    <form action="@Url.Action("ElimAtributo", "Home", new { id = datos })" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                    <a class="btn btn-success" href="@Url.Action("EditCentroCostos", "Home", new { id = datos })">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

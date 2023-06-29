@@ -19,7 +19,7 @@ namespace Avance.Controllers
                 {
                     var data = await response.Content.ReadAsStringAsync();
                     var centroCostos = JsonSerializer.Deserialize<IEnumerable<CentroCostos>>(data);
-                    return View(centroCostos);
+                    return View("indexcentro",centroCostos);
                 }
                 else
                 {
