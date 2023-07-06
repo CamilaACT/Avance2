@@ -1,16 +1,43 @@
 ﻿@model dynamic
 
+
+
 @{
     ViewData["Title"] = "Editar el campo";
 }
 
-<h3>Editar el campo del código: @Model.Codigo</h3>
+
+
+<h3>Editar código: @Model.Codigo</h3>
+<br />
 <div class="formulario">
     <form method="post" asp-action="Edit" asp-route-id="@Model.Codigo">
         <input type="hidden" name="_RequestVerificationToken" value="@ViewData["_RequestVerificationToken"]" />
 
+
+
         <input type="text" name="descripcion" value="@Model.NombreCentroCostos" placeholder="Descripción" required />
-        <button type="submit">Editar</button>
+        <br /> <!-- Salto de línea para separar el campo de entrada y el botón -->
+
+
+
+        <button type="submit" class="boton-azul">Editar</button>
     </form>
 </div>
 
+
+
+<style>
+    .boton-azul {
+        background-color: darkgreen;
+        color: white;
+    }
+
+
+
+    .formulario {
+        margin-top: 10px; /* Ajusta el valor según sea necesario */
+    }
+</style>
+
+tiene menú contextual

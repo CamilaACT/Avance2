@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<string>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Login TTHH</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
 
     <style>
         .button {
@@ -13,20 +17,41 @@
             background-color: green;
             border: none;
             color: white;
+            margin-top: 20px;
+        }
+
+
+
+        .form-group {
             margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <form asp-action="Login" method="post">
+    <form method="post" asp-action="Login">
         @Html.AntiForgeryToken()
         <section class="form-login">
-            <h1>Login</h1>
-            <input class="control" type="text" name="username" placeholder="Usuario"><br>
-            <input class="control" type="password" name="password" placeholder="Contraseña"><br>
+            <style>
+                .centrar {
+                    text-align: center;
+                }
+            </style>
+
+
+
+            <h1 class="centrar">Login</h1>
+
+
+
             <div class="form-group">
-                Emisor:
-                <select name="emisor" class="control">
+                <input class="form-control" type="text" name="username" placeholder="Usuario" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Contraseña" required />
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="emisor" required>
+                    <option value="">Seleccionar emisor</option>
                     @foreach (var emisor in Model)
                     {
                         <option>@emisor</option>
@@ -36,5 +61,19 @@
             <button class="button" type="submit">Login</button>
         </section>
     </form>
+
+
+
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.Message</div>
+    }
+
+
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["ErrorMessage"]</div>
+    }
 </body>
 </html>
