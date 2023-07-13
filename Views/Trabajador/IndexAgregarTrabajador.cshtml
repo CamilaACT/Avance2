@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewData["Title"] = "Agregar Trabajador";
+}
+
+@section title {
+    <h1>Agregar Trabajador</h1>
+}
+
+@section tituloprincipal {
+    <h1>Agregar un trabajador nuevo</h1>
+}
+
+@section body {
+    <div class="formulario">
+        <form action="@Url.Action("trabajadoresPost", "TrabajadorController")" method="post">
+            @Html.AntiForgeryToken()
+            <div class="box1">
+                <label id="COMP_Codigo" name="COMP_Codigo">COMP_Codigo:</label>
+                <input type="text" class="form-control" id="COMP_Codigo" name="COMP_Codigo" value="@ViewBag.id" disabled>
+                <label id="Tipo_trabajador" name="Tipo_trabajador">Tipo de trabajador:</label>
+                <select class="form-control" id="Tipo_trabajador" name="Tipo_trabajador">
+                    @foreach (var tipo in ViewBag.dataTipoTrabajador)
+                    {
+                        <option value="@tipo.id">@tipo.Codigo</option>
+                    }
+                </select>
+                <label id="Apellido_Paterno" name="Apellido_Paterno">Apellido Paterno:</label>
+                <input type="text" class="form-control" id="Apellido_Paterno" name="Apellido_Paterno">
+                <label id="Apellido_Materno" name="Apellido_Materno">Apellido Materno:</label>
+                <input type="text" class="form-control" id="Apellido_Materno" name="Apellido_Materno">
+                <label id="Nombres" name="Nombres">Nombres:</label>
+                <input type="text" class="form-control" id="Nombres" name="Nombres">
+                <label id="Identificacion" name="Identificacion">Identificacion:</label>
+                <input type="text" class="form-control" id="Identificacion" name="Identificacion">
+                <label id="Entidad_Bancaria" name="Entidad_Bancaria">Entidad Bancaria:</label>
+                <input type="text" class="form-control" id="Entidad_Bancaria" name="Entidad_Bancaria">
+                <label id="CarnetIESS" name="CarnetIESS">Carnet IESS:</label>
+                <input type="text" class="form-control" id="CarnetIESS" name="CarnetIESS">
+                <label id="Direccion" name="Direccion">Direccion:</label>
+                <input type="text" class="form-control" id="Direccion" name="Direccion">
+                <label id="Telefono_Fijo" name="Telefono_Fijo">Telefono Fijo:</label>
+                <input type="text" class="form-control" id="Telefono_Fijo" name="Telefono_Fijo">
+                <label id="Telefono_Movil" name="Telefono_Movil">Telefono Movil:</label>
+                <input type="text" class="form-control" id="Telefono_Movil" name="Telefono_Movil">
+                <label id="Genero" name="Genero">Genero:</label>
+                <select class="form-control" id="Genero" name="Genero">
+                    @foreach (var genero in ViewBag.dataGenero)
+                    {
+                        <option value="@genero.id">@genero.Codigo</option>
+                    }
+                </select>
+            </div>
+
+            <div class="box2">
+                <label id="Nro_Cuenta_Bancaria" name="Nro_Cuenta_Bancaria">Nro Cuenta Bancaria:</label>
+                <input type="text" class="form-control" id="Nro_Cuenta_Bancaria" name="Nro_Cuenta_Bancaria">
+                <label id="Codigo_Categoria_Ocupacion" name="Codigo_Categoria_Ocupacion">Codigo Categoria Ocupacion:</label>
+                <select class="form-control" id="Codigo_Categoria_Ocupacion" name="Codigo_Categoria_Ocupacion">
+                    @foreach (var categoria in ViewBag.dataCategoriaOcupacional)
+                    {
+                        <option value="@categoria.id">@categoria.Descripcion</option>
+                    }
+                </select>
+                <label id="Ocupacion" name="Ocupacion">Ocupacion:</label>
+                <select class="form-control" id="Ocupacion" name="Ocupacion">
+                    @foreach (var ocupacion in ViewBag.dataOcupaciones)
+                    {
+                        <option value="@ocupacion.id">@ocupacion.Descripcion</option>
+                    }
+                </select>
+                <label id="Centro_Costos" name="Centro_Costos">Centro de Costos:</label>
+                <select class="form-control" id="Centro_Costos" name="Centro_Costos">
+                    @foreach (var centro in ViewBag.datacentroCostos)
+                    {
+                        <option value="@centro.id">@centro.NombreCentroCostos</option>
+                    }
+                </select>
+                <label id="Nivel_Salarial" name="Nivel_Salarial">Nivel Salarial:</label>
+                <select class="form-control" id="Nivel_Salarial" name="Nivel_Salarial">
+                    @foreach (var nivel in ViewBag.dataNivelSalarial)
+                    {
+                        <option value="@nivel.id">@nivel.Descripcion</option>
+                    }
+                </select>
+                <label id="EstadoTrabajador" name="EstadoTrabajador">Estado del Trabajador:</label>
+                <input type="text" class="form-control" id="EstadoTrabajador" name="EstadoTrabajador">
+                <label id="Tipo_Contrato" name="Tipo_Contrato">Tipo de Contrato:</label>
+                <select class="form-control" id="Tipo_Contrato" name="Tipo_Contrato">
+                    @foreach (var contrato in ViewBag.dataTipoContrato)
+                    {
+                        <option value="@contrato.id">@contrato.Descripcion</option>
+                    }
+                </select>
+                <label id="Tipo_Cese" name="Tipo_Cese">Tipo de Cese:</label>
+                <select class="form-control" id="Tipo_Cese" name="Tipo_Cese">
+                    @foreach (var cese in ViewBag.dataTipoCese)
+                    {
+                        <option value="@cese.id">@cese.Descripcion</option>
+                    }
+                </select>
+                <label id="EstadoCivil" name="EstadoCivil">Estado Civil:</label>
+                <select class="form-control" id="EstadoCivil" name="EstadoCivil">
+                    @foreach (var estado in ViewBag.dataEstadoCivil)
+                    {
+                        <option value="@estado.id">@estado.Descripcion</option>
+                    }
+                </select>
+                <label id="TipodeComision" name="TipodeComision">Tipo de Comision:</label>
+                <select class="form-control" id="TipodeComision" name="TipodeComision">
+                    @foreach (var comision in ViewBag.dataTipoComision)
+                    {
+                        <option value="@comision.id">@comision.Codigo</option>
+                    }
+                </select>
+                <label id="FechaNacimiento" name="FechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento">
+                <label id="FechaIngreso" name="FechaIngreso">Fecha de Ingreso:</label>
+                <input type="date" class="form-control" id="FechaIngreso" name="FechaIngreso">
+            </div>
+
+            <div class="box3">
+                <label id="FechaCese" name="FechaCese">Fecha de Cese:</label>
+                <input type="date" class="form-control" id="FechaCese" name="FechaCese">
+                <label id="PeriododeVacaciones" name="PeriododeVacaciones">Periodo de Vacaciones:</label>
+                <select class="form-control" id="PeriododeVacaciones" name="PeriododeVacaciones">
+                    @foreach (var periodo in ViewBag.dataPeriodoVacaciones)
+                    {
+                        <option value="@periodo.id">@periodo.Codigo</option>
+                    }
+                </select>
+                <label id="FechaReingreso" name="FechaReingreso">Fecha de Reingreso:</label>
+                <input type="date" class="form-control" id="FechaReingreso" name="FechaReingreso">
+                <label id="Fecha_Ult_Actualizacion" name="Fecha_Ult_Actualizacion">Fecha Ultima Actualizacion:</label>
+                <input type="date" class="form-control" id="Fecha_Ult_Actualizacion" name="Fecha_Ult_Actualizacion">
+                <label id="EsReingreso" name="EsReingreso">Es Reingreso:</label>
+                <select class="form-control" id="EsReingreso" name="EsReingreso">
+                    @foreach (var reingreso in ViewBag.dataEsReingreso)
+                    {
+                        <option value="@reingreso.id">@reingreso.Descripcion</option>
+                    }
+                </select>
+                <label id="Tipo_Cuenta" name="Tipo_Cuenta">Tipo de Cuenta:</label>
+                <select class="form-control" id="Tipo_Cuenta" name="Tipo_Cuenta">
+                    @foreach (var cuenta in ViewBag.dataTipoCuenta)
+                    {
+                        <option value="@cuenta.id">@cuenta.Descripcion</option>
+                    }
+                </select>
+                <label id="FormaCalculo13ro" name="FormaCalculo13ro">Forma de Calculo 13ro:</label>
+                <select class="form-control" id="FormaCalculo13ro" name="FormaCalculo13ro">
+                    @foreach (var calculo in ViewBag.dataDecimoTerceroDecimoCuarto)
+                    {
+                        <option value="@calculo.id">@calculo.Descripcion</option>
+                    }
+                </select>
+                <label id="FormaCalculo14to" name="FormaCalculo14to">Forma de Calculo 14to:</label>
+                <select class="form-control" id="FormaCalculo14to" name="FormaCalculo14to">
+                    @foreach (var calculo in ViewBag.dataDecimoTerceroDecimoCuarto)
+                    {
+                        <option value="@calculo.id">@calculo.Descripcion</option>
+                    }
+                </select>
+                <label id="BoniComplementaria" name="BoniComplementaria">Boni Complementaria:</label>
+                <input type="text" class="form-control" id="BoniComplementaria" name="BoniComplementaria" placeholder="Entero">
+                <label id="BoniEspecial" name="BoniEspecial">Boni Especial:</label>
+                <input type="text" class="form-control" id="BoniEspecial" name="BoniEspecial" placeholder="Entero">
+                <label id="Remuneracion_Minima" name="Remuneracion_Minima">Remuneracion Minima:</label>
+                <input type="text" class="form-control" id="Remuneracion_Minima" name="Remuneracion_Minima" placeholder="Entero">
+                <label id="Fondo_Reserva" name="Fondo_Reserva">Fondo de Reserva:</label>
+                <input type="text" class="form-control" id="Fondo_Reserva" name="Fondo_Reserva">
+                <label id="Mensaje" name="Mensaje">Mensaje:</label>
+                <input type="text" class="form-control" id="Mensaje" name="Mensaje">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+}
+

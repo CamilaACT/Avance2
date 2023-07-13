@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "TTHH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            position: relative;
+            left: 20%;
+        }
+
+        .side-var {
+            width: 20%;
+            height: 100%;
+            background-color: rgb(22, 73, 107);
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+            color: white;
+        }
+
+            .side-var h3 {
+                text-align: center;
+            }
+
+            .side-var a {
+                position: relative;
+                left: 10%;
+                color: white;
+                text-decoration: none;
+            }
+
+        .formulario {
+            width: 25%;
+            height: 100%;
+            position: relative;
+        }
+
+        .navbar {
+            float: left;
+            width: 100%;
+            position: fixed;
+            margin-left: 20%;
+            z-index: 2;
+            max-width: 80%;
+            height: 12rem;
+        }
+
+            .navbar ul {
+                list-style: none;
+                overflow: hidden;
+                color: black;
+            }
+
+                .navbar ul li {
+                    float: left;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 20px;
+                }
+
+                    .navbar ul li a {
+                        display: block;
+                        padding: 20px;
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+        .table {
+            position: relative;
+        }
+
+        .position {
+            position: relative;
+            height: 12rem;
+        }
+
+        .box1 {
+            position: absolute;
+            left: 10%;
+            width: 80%;
+        }
+
+        .box2 {
+            position: absolute;
+            left: 100%;
+            width: 80%;
+        }
+
+        .box3 {
+            position: relative;
+            left: 200%;
+            width: 80%;
+        }
+
+        .box4 {
+            position: relative;
+            left: 10%;
+            width: 80%;
+        }
+
+        button {
+            position: relative;
+            left: 10%;
+        }
+    </style>
+    <div class="position"></div>
+
+    <nav class="navbar fixed-top navbar-light" style="background-color: #e3f2fd;">
+        <ul>
+            <a>@ViewBag.Title</a>
+            <li>@RenderSection("buscar")</li>
+            <br>
+            <l1>@RenderSection("agregar")</l1>
+        </ul>
+    </nav>
+</head>
+<body>
+    <div class="side-var">
+        <h3>Menu de opciones</h3>
+        <a href="@Url.Action("CentroCostos", "CentroCostos")">Centro de costos</a><br>
+        <a href="@Url.Action("PagTipoTrabajador", "Trabajador")">Trabajador</a><br>
+        <a href="@Url.Action("Index", "Home")">Salir</a><br />
+    </div>
+    <div>
+        <!-- Secciones que se deben renderizar -->
+        <h1>@ViewData["Title"]</h1>
+
+        @RenderSection("title", required: false)
+
+        @RenderSection("tituloprincipal", required: false)
+
+        @RenderSection("body", required: false)
+
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

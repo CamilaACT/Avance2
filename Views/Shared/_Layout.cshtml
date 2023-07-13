@@ -17,7 +17,6 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
             </div>
         </nav>
     </header>
@@ -27,8 +26,6 @@
         </main>
     </div>
 
-
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Avance - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -37,6 +34,16 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("scripts", required: false)
+
+    <!-- Secciones que se deben renderizar -->
+    <h1>@ViewData["Title"]</h1>
+
+    @RenderSection("title", required: false)
+
+    @RenderSection("tituloprincipal", required: false)
+
+    @RenderSection("body", required: false)
 </body>
+</html>
 </html>

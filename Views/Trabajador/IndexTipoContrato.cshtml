@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "layout.cshtml";
+}
+
+@section title {
+    <title>Centro de costos</title>
+}
+
+@section tituloprincipal {
+    <h3>Tipos de contratos</h3>
+}
+
+@section body {
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var datos in Model.data)
+            {
+                <tr>
+                    <th scope="row">@datos.Codigo</th>
+                    <td>@datos.Descripcion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

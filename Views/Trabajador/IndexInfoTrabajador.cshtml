@@ -1,0 +1,131 @@
+﻿
+
+@{
+    ViewData["Title"] = "Trabajadores";
+    Layout = "~/Views/Shared/_layout1.cshtml";
+}
+@section title {
+    <h1>Trabajadores</h1>
+}
+
+@section tituloprincipal {
+    <h1>Trabajadores</h1>
+}
+
+@section buscar {
+    <h3>Buscar trabajadores:</h3>
+    <form action="@Url.Action("BuscarTrabajador", "Trabajador", new { id = ViewBag.Id })" method="post">
+        @Html.AntiForgeryToken()
+        <input type="text" name="Codigo" placeholder="Codigo de trabajador">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+}
+
+@section agregar {
+    <a href="@Url.Action("PagTrabajadoresCreate", "TrabajadorController", new { id = ViewBag.Id })" class="btn btn-success">Agregar<img src="https://i.ibb.co/jydyV2j/add-plus-circle-svgrepo-com.png" height="25px" width="25px" /></a>
+}
+
+@section body {
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">COMP_Codigo</th>
+                <th scope="col">Id_Trabajador</th>
+                <th scope="col">Tipo_trabajador</th>
+                <th scope="col">Apellido_Paterno</th>
+                <th scope="col">Apellido_Materno</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Identificacion</th>
+                <th scope="col">Entidad_Bancaria</th>
+                <th scope="col">CarnetIESS</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Telefono_Fijo</th>
+                <th scope="col">Telefono_Movil</th>
+                <th scope="col">Genero</th>
+                <th scope="col">Nro_Cuenta_Bancaria</th>
+                <th scope="col">Codigo_Categoria_Ocupacion</th>
+                <th scope="col">Ocupacion</th>
+                <th scope="col">Centro_Costos</th>
+                <th scope="col">Nivel_Salarial</th>
+                <th scope="col">EstadoTrabajador</th>
+                <th scope="col">Tipo_Contrato</th>
+                <th scope="col">Tipo_Cese</th>
+                <th scope="col">EstadoCivil</th>
+                <th scope="col">TipodeComision</th>
+                <th scope="col">FechaNacimiento</th>
+                <th scope="col">FechaIngreso</th>
+                <th scope="col">FechaCese</th>
+                <th scope="col">PeriododeVacaciones</th>
+                <th scope="col">FechaReingreso</th>
+                <th scope="col">Fecha_Ult_Actualizacion</th>
+                <th scope="col">EsReingreso</th>
+                <th scope="col">BancoCTA_CTE</th>
+                <th scope="col">Tipo_Cuenta</th>
+                <th scope="col">RSV_Indem_Acumul</th>
+                <th scope="col">Año_Ult_Rsva_Indemni</th>
+                <th scope="col">Mes_Ult_Rsva_Indemni</th>
+                <th scope="col">FormaCalculo13ro</th>
+                <th scope="col">FormaCalculo14ro</th>
+                <th scope="col">BoniComplementaria</th>
+                <th scope="col">BoniEspecial</th>
+                <th scope="col">Remuneracion_Minima</th>
+                <th scope="col">CuotaCuentaCorriente</th>
+                <th scope="col">Fondo_Reserva</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var datos in ViewBag.data)
+            {
+                <tr>
+                    <th scope="row">@datos.COMP_Codigo</th>
+                    <td>@datos.Id_Trabajador</td>
+                    <td>@datos.Tipo_trabajador</td>
+                    <td>@datos.Apellido_Paterno</td>
+                    <td>@datos.Apellido_Materno</td>
+                    <td>@datos.Nombres</td>
+                    <td>@datos.Identificacion</td>
+                    <td>@datos.Entidad_Bancaria</td>
+                    <td>@datos.CarnetIESS</td>
+                    <td>@datos.Direccion</td>
+                    <td>@datos.Telefono_Fijo</td>
+                    <td>@datos.Telefono_Movil</td>
+                    <td>@datos.Genero</td>
+                    <td>@datos.Nro_Cuenta_Bancaria</td>
+                    <td>@datos.Codigo_Categoria_Ocupacion</td>
+                    <td>@datos.Ocupacion</td>
+                    <td>@datos.Centro_Costos</td>
+                    <td>@datos.Nivel_Salarial</td>
+                    <td>@datos.EstadoTrabajador</td>
+                    <td>@datos.Tipo_Contrato</td>
+                    <td>@datos.Tipo_Cese</td>
+                    <td>@datos.EstadoCivil</td>
+                    <td>@datos.TipodeComision</td>
+                    <td>@datos.FechaNacimiento</td>
+                    <td>@datos.FechaIngreso</td>
+                    <td>@datos.FechaCese</td>
+                    <td>@datos.PeriododeVacaciones</td>
+                    <td>@datos.FechaReingreso</td>
+                    <td>@datos.Fecha_Ult_Actualizacion</td>
+                    <td>@datos.EsReingreso</td>
+                    <td>@datos.BancoCTA_CTE</td>
+                    <td>@datos.Tipo_Cuenta</td>
+                    <td>@datos.RSV_Indem_Acumul</td>
+                    <td>@datos.Año_Ult_Rsva_Indemni</td>
+                    <td>@datos.Mes_Ult_Rsva_Indemni</td>
+                    <td>@datos.FormaCalculo13ro</td>
+                    <td>@datos.FormaCalculo14ro</td>
+                    <td>@datos.BoniComplementaria</td>
+                    <td>@datos.BoniEspecial</td>
+                    <td>@datos.Remuneracion_Minima</td>
+                    <td>@datos.CuotaCuentaCorriente</td>
+                    <td>@datos.Fondo_Reserva</td>
+                    <td>
+                        <a href="@Url.Action("PagTrabajadoresEdit", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-primary">Editar<img src="https://i.ibb.co/ZJt9YnC/edit-svgrepo-com.png" height="25px" width="25px" /></a>
+                        <a href="@Url.Action("PagTrabajadoresDelete", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-danger">Eliminar<img src="https://i.ibb.co/8Y2HNjJ/delete-svgrepo-com.png" height="25px" width="25px" /></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

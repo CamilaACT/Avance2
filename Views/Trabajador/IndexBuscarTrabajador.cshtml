@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Bienvenido a la Sucursal UE SF DE LA AVERINA";
+}
+
+
+@section body {
+    <form action="@Url.Action("PagTrabajadores", "Trabajador")" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Ver más...</button>
+    </form>
+}
+
