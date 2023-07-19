@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
@@ -41,7 +42,7 @@ namespace Avance.Controllers
             {
                 var id = datos["Codigo"].ToString();
 
-                url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + id;
+                url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + 2;
                 response = client.GetStringAsync(url).GetAwaiter().GetResult();
                 var data = JArray.Parse(response);
                 ViewBag.data = data;
@@ -475,7 +476,6 @@ namespace Avance.Controllers
 
             return null;
         }
-
         public ActionResult BuscarTrabajador(int id)
         {
             var context = HttpContext;
@@ -485,28 +485,41 @@ namespace Avance.Controllers
 
                 using (HttpClient client = new HttpClient())
                 {
-                    HttpResponseMessage response = client.GetAsync("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + id).Result;
+                    HttpResponseMessage response = client.GetAsync("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + 1).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         var data = response.Content.ReadAsStringAsync().Result;
-                        var dataArray = JArray.Parse(data);
-                        foreach (var item in dataArray)
+                        if (!string.IsNullOrEmpty(data))
                         {
-                            if (item["Id_Trabajador"].Value<int>() == int.Parse(codigo))
+                            try
                             {
-                                return View("IndexSearchTrabajador", new
+                                var dataArray = JArray.Parse(data);
+                                foreach (var item in dataArray)
                                 {
-                                    data2 = item,
-                                    id = id
-                                });
+                                    if (item["Id_Trabajador"].Value<int>() == int.Parse(codigo))
+                                    {
+                                        return View("IndexSearchTrabajador", new
+                                        {
+                                            data2 = item,
+                                            id = id
+                                        });
+                                    }
+                                }
+                            }
+                            catch (JsonReaderException ex)
+                            {
+                                // Manejar la excepción, puede imprimir o registrar el error para obtener más detalles
+                                Console.WriteLine("Error al analizar el JSON: " + ex.Message);
                             }
                         }
                     }
                 }
             }
 
-            return null;
+            // Redirige a otra acción o devuelve una vista de error
+            return RedirectToAction("Error", "Shared");
         }
+
 
 
         public ActionResult PagTipoTrabajador()

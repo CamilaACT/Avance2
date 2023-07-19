@@ -8,9 +8,6 @@
     <h1>Trabajadores</h1>
 }
 
-@section tituloprincipal {
-    <h1>Trabajadores</h1>
-}
 
 @section buscar {
     <h3>Buscar trabajadores:</h3>
@@ -22,45 +19,45 @@
 }
 
 @section agregar {
-    <a href="@Url.Action("PagTrabajadoresCreate", "TrabajadorController", new { id = ViewBag.Id })" class="btn btn-success">Agregar<img src="https://i.ibb.co/jydyV2j/add-plus-circle-svgrepo-com.png" height="25px" width="25px" /></a>
+    <a href="@Url.Action("PagTrabajadoresCreate", "TrabajadorController", new { id = ViewBag.Id })" class="btn btn-success">Agregar</a>
 }
 
 @section body {
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">COMP_Codigo</th>
-                <th scope="col">Id_Trabajador</th>
-                <th scope="col">Tipo_trabajador</th>
-                <th scope="col">Apellido_Paterno</th>
-                <th scope="col">Apellido_Materno</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Id Trabajador</th>
+                <th scope="col">Tipo trabajador</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
                 <th scope="col">Nombres</th>
                 <th scope="col">Identificacion</th>
-                <th scope="col">Entidad_Bancaria</th>
+                <th scope="col">Entidad Bancaria</th>
                 <th scope="col">CarnetIESS</th>
                 <th scope="col">Direccion</th>
-                <th scope="col">Telefono_Fijo</th>
-                <th scope="col">Telefono_Movil</th>
+                <th scope="col">Telefono Fijo</th>
+                <th scope="col">Telefono Movil</th>
                 <th scope="col">Genero</th>
-                <th scope="col">Nro_Cuenta_Bancaria</th>
-                <th scope="col">Codigo_Categoria_Ocupacion</th>
+                <th scope="col">Nro.Cuenta Bancaria</th>
+                <th scope="col">Codigo Categoria Ocupacion</th>
                 <th scope="col">Ocupacion</th>
-                <th scope="col">Centro_Costos</th>
-                <th scope="col">Nivel_Salarial</th>
-                <th scope="col">EstadoTrabajador</th>
-                <th scope="col">Tipo_Contrato</th>
-                <th scope="col">Tipo_Cese</th>
-                <th scope="col">EstadoCivil</th>
-                <th scope="col">TipodeComision</th>
-                <th scope="col">FechaNacimiento</th>
-                <th scope="col">FechaIngreso</th>
-                <th scope="col">FechaCese</th>
-                <th scope="col">PeriododeVacaciones</th>
-                <th scope="col">FechaReingreso</th>
-                <th scope="col">Fecha_Ult_Actualizacion</th>
-                <th scope="col">EsReingreso</th>
-                <th scope="col">BancoCTA_CTE</th>
-                <th scope="col">Tipo_Cuenta</th>
+                <th scope="col">Centro Costos</th>
+                <th scope="col">Nivel Salarial</th>
+                <th scope="col">Estado Trabajador</th>
+                <th scope="col">Tipo Contrato</th>
+                <th scope="col">Tipo Cese</th>
+                <th scope="col">Estado Civil</th>
+                <th scope="col">Tipo de Comision</th>
+                <th scope="col">Fecha Nacimiento</th>
+                <th scope="col">Fecha Ingreso</th>
+                <th scope="col">Fecha Cese</th>
+                <th scope="col">Periodo de Vacaciones</th>
+                <th scope="col">Fecha Reingreso</th>
+                <th scope="col">Fecha Actualizacion</th>
+                <th scope="col">Es Reingreso</th>
+                <th scope="col">BancoCTA CTE</th>
+                <th scope="col">Tipo Cuenta</th>
                 <th scope="col">RSV_Indem_Acumul</th>
                 <th scope="col">Año_Ult_Rsva_Indemni</th>
                 <th scope="col">Mes_Ult_Rsva_Indemni</th>
@@ -121,8 +118,8 @@
                     <td>@datos.CuotaCuentaCorriente</td>
                     <td>@datos.Fondo_Reserva</td>
                     <td>
-                        <a href="@Url.Action("PagTrabajadoresEdit", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-primary">Editar<img src="https://i.ibb.co/ZJt9YnC/edit-svgrepo-com.png" height="25px" width="25px" /></a>
-                        <a href="@Url.Action("PagTrabajadoresDelete", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-danger">Eliminar<img src="https://i.ibb.co/8Y2HNjJ/delete-svgrepo-com.png" height="25px" width="25px" /></a>
+                        <a href="@Url.Action("PagTrabajadoresEdit", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-primary">Editar</a>
+                        <a href="@Url.Action("PagTrabajadoresDelete", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
             }
