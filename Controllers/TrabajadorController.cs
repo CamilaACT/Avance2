@@ -485,7 +485,7 @@ namespace Avance.Controllers
 
                 using (HttpClient client = new HttpClient())
                 {
-                    HttpResponseMessage response = client.GetAsync("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + 1).Result;
+                    HttpResponseMessage response = client.GetAsync("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + 2).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         var data = response.Content.ReadAsStringAsync().Result;
