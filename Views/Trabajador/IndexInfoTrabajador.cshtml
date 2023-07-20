@@ -19,7 +19,7 @@
 }
 
 @section agregar {
-    <a href="@Url.Action("PagTrabajadoresCreate", "Trabajador", new { id = 2 })" class="btn btn-success">Agregar</a>
+    <a href="@Url.Action("PagTrabajadoresCreate", "Trabajador", new { id = 3456768 })" class="btn btn-success">Agregar</a>
 }
 
 @section body {
@@ -72,56 +72,60 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var datos in ViewBag.data)
+            @if (ViewBag.data != null)
             {
-                <tr>
-                    <th scope="row">@datos.COMP_Codigo</th>
-                    <td>@datos.Id_Trabajador</td>
-                    <td>@datos.Tipo_trabajador</td>
-                    <td>@datos.Apellido_Paterno</td>
-                    <td>@datos.Apellido_Materno</td>
-                    <td>@datos.Nombres</td>
-                    <td>@datos.Identificacion</td>
-                    <td>@datos.Entidad_Bancaria</td>
-                    <td>@datos.CarnetIESS</td>
-                    <td>@datos.Direccion</td>
-                    <td>@datos.Telefono_Fijo</td>
-                    <td>@datos.Telefono_Movil</td>
-                    <td>@datos.Genero</td>
-                    <td>@datos.Nro_Cuenta_Bancaria</td>
-                    <td>@datos.Codigo_Categoria_Ocupacion</td>
-                    <td>@datos.Ocupacion</td>
-                    <td>@datos.Centro_Costos</td>
-                    <td>@datos.Nivel_Salarial</td>
-                    <td>@datos.EstadoTrabajador</td>
-                    <td>@datos.Tipo_Contrato</td>
-                    <td>@datos.Tipo_Cese</td>
-                    <td>@datos.EstadoCivil</td>
-                    <td>@datos.TipodeComision</td>
-                    <td>@datos.FechaNacimiento</td>
-                    <td>@datos.FechaIngreso</td>
-                    <td>@datos.FechaCese</td>
-                    <td>@datos.PeriododeVacaciones</td>
-                    <td>@datos.FechaReingreso</td>
-                    <td>@datos.Fecha_Ult_Actualizacion</td>
-                    <td>@datos.EsReingreso</td>
-                    <td>@datos.BancoCTA_CTE</td>
-                    <td>@datos.Tipo_Cuenta</td>
-                    <td>@datos.RSV_Indem_Acumul</td>
-                    <td>@datos.Año_Ult_Rsva_Indemni</td>
-                    <td>@datos.Mes_Ult_Rsva_Indemni</td>
-                    <td>@datos.FormaCalculo13ro</td>
-                    <td>@datos.FormaCalculo14ro</td>
-                    <td>@datos.BoniComplementaria</td>
-                    <td>@datos.BoniEspecial</td>
-                    <td>@datos.Remuneracion_Minima</td>
-                    <td>@datos.CuotaCuentaCorriente</td>
-                    <td>@datos.Fondo_Reserva</td>
-                    <td>
-                        <a href="@Url.Action("TrabajadoresUpdate", "Trabajador", new { id = datos.Id_Trabajador })" class="btn btn-primary">Editar</a>
-                        <a href="@Url.Action("PagTrabajadoresDelete", "Trabajador", new { id = datos.Id_Trabajador })" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
+                @foreach (var datos in ViewBag.data)
+                {
+                    <tr>
+                        <th scope="row">@datos.COMP_Codigo</th>
+                        <td>@datos.Id_Trabajador</td>
+                        <td>@datos.Tipo_trabajador</td>
+                        <td>@datos.Apellido_Paterno</td>
+                        <td>@datos.Apellido_Materno</td>
+                        <td>@datos.Nombres</td>
+                        <td>@datos.Identificacion</td>
+                        <td>@datos.Entidad_Bancaria</td>
+                        <td>@datos.CarnetIESS</td>
+                        <td>@datos.Direccion</td>
+                        <td>@datos.Telefono_Fijo</td>
+                        <td>@datos.Telefono_Movil</td>
+                        <td>@datos.Genero</td>
+                        <td>@datos.Nro_Cuenta_Bancaria</td>
+                        <td>@datos.Codigo_Categoria_Ocupacion</td>
+                        <td>@datos.Ocupacion</td>
+                        <td>@datos.Centro_Costos</td>
+                        <td>@datos.Nivel_Salarial</td>
+                        <td>@datos.EstadoTrabajador</td>
+                        <td>@datos.Tipo_Contrato</td>
+                        <td>@datos.Tipo_Cese</td>
+                        <td>@datos.EstadoCivil</td>
+                        <td>@datos.TipodeComision</td>
+                        <td>@datos.FechaNacimiento</td>
+                        <td>@datos.FechaIngreso</td>
+                        <td>@datos.FechaCese</td>
+                        <td>@datos.PeriododeVacaciones</td>
+                        <td>@datos.FechaReingreso</td>
+                        <td>@datos.Fecha_Ult_Actualizacion</td>
+                        <td>@datos.EsReingreso</td>
+                        <td>@datos.BancoCTA_CTE</td>
+                        <td>@datos.Tipo_Cuenta</td>
+                        <td>@datos.RSV_Indem_Acumul</td>
+                        <td>@datos.Año_Ult_Rsva_Indemni</td>
+                        <td>@datos.Mes_Ult_Rsva_Indemni</td>
+                        <td>@datos.FormaCalculo13ro</td>
+                        <td>@datos.FormaCalculo14ro</td>
+                        <td>@datos.BoniComplementaria</td>
+                        <td>@datos.BoniEspecial</td>
+                        <td>@datos.Remuneracion_Minima</td>
+                        <td>@datos.CuotaCuentaCorriente</td>
+                        <td>@datos.Fondo_Reserva</td>
+                        <td>
+                            <a href="@Url.Action("TrabajadoresUpdate", "Trabajador", new { id = datos.Id_Trabajador })" class="btn btn-primary">Editar</a>
+                            <a href="@Url.Action("PagTrabajadoresDelete", "Trabajador", new { id = datos.Id_Trabajador })" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+
             }
         </tbody>
     </table>

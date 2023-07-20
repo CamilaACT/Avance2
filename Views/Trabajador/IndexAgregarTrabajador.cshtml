@@ -23,7 +23,7 @@
                 <select class="form-control" id="Tipo_trabajador" name="Tipo_trabajador">
                     @foreach (var tipo in ViewBag.dataTipoTrabajador)
                     {
-                        <option value="@tipo.id">@tipo.Codigo</option>
+                        <option value="@tipo.">@tipo.Codigo</option>
                     }
                 </select>
                 <label id="Apellido_Paterno" name="Apellido_Paterno">Apellido Paterno:</label>
@@ -120,14 +120,14 @@
                     }
                 </select>
                 <label id="FechaNacimiento" name="FechaNacimiento">Fecha de Nacimiento:</label>
-                <input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" />
+                <input type="text" class="form-control" id="FechaNacimiento" name="FechaNacimiento" />
                 <label id="FechaIngreso" name="FechaIngreso">Fecha de Ingreso:</label>
-                <input type="date" class="form-control" id="FechaIngreso" name="FechaIngreso" />
+                <input type="text" class="form-control" id="FechaIngreso" name="FechaIngreso" />
             </div>
 
             <div class="box3">
                 <label id="FechaCese" name="FechaCese">Fecha de Cese:</label>
-                <input type="date" class="form-control" id="FechaCese" name="FechaCese" />
+                <input type="text" class="form-control" id="FechaCese" name="FechaCese" />
                 <label id="PeriododeVacaciones" name="PeriododeVacaciones">Periodo de Vacaciones:</label>
                 <select class="form-control" id="PeriododeVacaciones" name="PeriododeVacaciones">
                     @foreach (var periodo in ViewBag.dataPeriodoVacaciones)
@@ -136,9 +136,9 @@
                     }
                 </select>
                 <label id="FechaReingreso" name="FechaReingreso">Fecha de Reingreso:</label>
-                <input type="date" class="form-control" id="FechaReingreso" name="FechaReingreso" />
+                <input type="text" class="form-control" id="FechaReingreso" name="FechaReingreso" />
                 <label id="Fecha_Ult_Actualizacion" name="Fecha_Ult_Actualizacion">Fecha Ultima Actualizacion:</label>
-                <input type="date" class="form-control" id="Fecha_Ult_Actualizacion" name="Fecha_Ult_Actualizacion" />
+                <input type="text" class="form-control" id="Fecha_Ult_Actualizacion" name="Fecha_Ult_Actualizacion" />
                 <label id="EsReingreso" name="EsReingreso">Es Reingreso:</label>
                 <select class="form-control" id="EsReingreso" name="EsReingreso">
                     @foreach (var reingreso in ViewBag.dataEsReingreso)

@@ -241,8 +241,9 @@ namespace Avance.Controllers
                 string Fondo_Reserva = Request.Form["Fondo_Reserva"];
                 string Mensaje = Request.Form["Mensaje"];
 
+
                 var url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorInsert";
-                var data = GetJsonData(url);
+                //var data = GetJsonData(url);
 
                 // Buscar código de categoría ocupacional
                 url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CategoriaOcupacional";
@@ -268,7 +269,7 @@ namespace Avance.Controllers
                 url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosSelect";
                 var dataCentroCostos = GetJsonData(url);
 
-                var codigoCentroCostos = dataCentroCostos.FirstOrDefault(item => item["Descripcion"].ToString() == Centro_Costos);
+                var codigoCentroCostos = dataCentroCostos.FirstOrDefault(item => item["NombreCentroCostos"].ToString() == Centro_Costos);
                 if (codigoCentroCostos != null)
                 {
                     Centro_Costos = codigoCentroCostos["Codigo"].ToString();
@@ -290,37 +291,92 @@ namespace Avance.Controllers
                 {
                     FormaCalculo14to = codigoFormaCalculo14to["Codigo"].ToString();
                 }
+                var url1 = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorInsert";
+                var postData = new Dictionary<string, string>
+            {
+                  { "COMP_Codigo", COMP_Codigo },
+                      { "Tipo_trabajador", Tipo_trabajador },
+                      { "Apellido_Paterno", Apellido_Paterno },
+                      { "Apellido_Materno", Apellido_Materno },
+                      { "Nombres", Nombres },
+                      { "Identificacion", Identificacion },
+                      { "Entidad_Bancaria", Entidad_Bancaria },
+                      { "CarnetIESS", CarnetIESS },
+                      { "Direccion", Direccion },
+                      { "Telefono_Fijo", Telefono_Fijo },
+                      { "Telefono_Movil", Telefono_Movil },
+                      { "Genero", Genero },
+                      { "Nro_Cuenta_Bancaria", Nro_Cuenta_Bancaria },
+                      { "Codigo_Categoria_Ocupacion", Codigo_Categoria_Ocupacion },
+                      { "Ocupacion", Ocupacion },
+                      { "Centro_Costos", Centro_Costos},
+                      { "Nivel_Salarial", Nivel_Salarial },
+                      { "EstadoTrabajador", EstadoTrabajador },
+                      { "Tipo_Contrato", Tipo_Contrato },
+                      { "Tipo_Cese", Tipo_Cese },
+                      { "EstadoCivil", EstadoCivil },
+                      { "TipodeComision", TipodeComision },
+                      { "FechaNacimiento", FechaNacimiento },
+                      { "FechaIngreso", FechaIngreso },
+                      { "FechaCese", FechaCese },
+                      { "PeriododeVacaciones", PeriododeVacaciones },
+                      { "FechaReingreso", FechaReingreso },
+                      { "Fecha_Ult_Actualizacion", Fecha_Ult_Actualizacion },
+                      { "EsReingreso", EsReingreso },
+                      { "Tipo_Cuenta", Tipo_Cuenta },
+                      { "FormaCalculo13ro", FormaCalculo13ro },
+                      { "FormaCalculo14to", FormaCalculo14to },
+                      { "BoniComplementaria", BoniComplementaria },
+                      { "BoniEspecial", BoniEspecial },
+                      { "Remuneracion_Minima", Remuneracion_Minima },
+                      { "Fondo_Reserva", Fondo_Reserva },
+                      { "Mensaje", Mensaje },
+                
+                      
 
-                url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorInsert?COMP_Codigo=" + COMP_Codigo +
-                      "&Tipo_trabajador=" + Tipo_trabajador + "&Apellido_Paterno=" + Apellido_Paterno + "&Apellido_Materno=" +
-                      Apellido_Materno + "&Nombres=" + Nombres + "&Identificacion=" + Identificacion + "&Entidad_Bancaria=" +
-                      Entidad_Bancaria + "&CarnetIESS=" + CarnetIESS + "&Direccion=" + Direccion + "&Telefono_Fijo=" +
-                      Telefono_Fijo + "&Telefono_Movil=" + Telefono_Movil + "&Genero=" + Genero +
-                      "&Nro_Cuenta_Bancaria=" + Nro_Cuenta_Bancaria + "&Codigo_Categoria_Ocupacion=" +
-                      Codigo_Categoria_Ocupacion + "&Ocupacion=" + Ocupacion + "&Centro_Costos=" + Centro_Costos +
-                      "&Nivel_Salarial=" + Nivel_Salarial + "&EstadoTrabajador=" + EstadoTrabajador + "&Tipo_Contrato=" + Tipo_Contrato +
-                      "&Tipo_Cese=" + Tipo_Cese + "&EstadoCivil=" + EstadoCivil + "&TipodeComision=" + TipodeComision + "&FechaNacimiento=" + FechaNacimiento +
-                      "&FechaIngreso=" + FechaIngreso + "&FechaCese=" + FechaCese + "&PeriododeVacaciones=" +
-                      PeriododeVacaciones + "&FechaReingreso=" + FechaReingreso + "&Fecha_Ult_Actualizacion=" +
-                      Fecha_Ult_Actualizacion + "&EsReingreso=" + EsReingreso + "&Tipo_Cuenta=" + Tipo_Cuenta +
-                      "&FormaCalculo13ro=" + FormaCalculo13ro + "&FormaCalculo14ro=" + FormaCalculo14to +
-                      "&BoniComplementaria=" + BoniComplementaria + "&BoniEspecial=" + BoniEspecial +
-                      "&Remuneracion_Minima=" + Remuneracion_Minima + "&Fondo_Reserva=" + Fondo_Reserva +
-                      "&Mensaje=" + Mensaje;
+                // Add other parameters as needed
+            };
+                var result = PostDataAsync(url1, postData).Result;
+                //url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorInsert?" + COMP_Codigo +
+                //      "&Tipo_trabajador=" + Tipo_trabajador + "&Apellido_Paterno=" + Apellido_Paterno + "&Apellido_Materno=" +
+                //      Apellido_Materno + "&Nombres=" + Nombres + "&Identificacion=" + Identificacion + "&Entidad_Bancaria=" +
+                //      Entidad_Bancaria + "&CarnetIESS=" + CarnetIESS + "&Direccion=" + Direccion + "&Telefono_Fijo=" +
+                //      Telefono_Fijo + "&Telefono_Movil=" + Telefono_Movil + "&Genero=" + Genero +
+                //      "&Nro_Cuenta_Bancaria=" + Nro_Cuenta_Bancaria + "&Codigo_Categoria_Ocupacion=" +
+                //      Codigo_Categoria_Ocupacion + "&Ocupacion=" + Ocupacion + "&Centro_Costos=" + Centro_Costos +
+                //      "&Nivel_Salarial=" + Nivel_Salarial + "&EstadoTrabajador=" + EstadoTrabajador + "&Tipo_Contrato=" + Tipo_Contrato +
+                //      "&Tipo_Cese=" + Tipo_Cese + "&EstadoCivil=" + EstadoCivil + "&TipodeComision=" + TipodeComision + "&FechaNacimiento=" + FechaNacimiento +
+                //      "&FechaIngreso=" + FechaIngreso + "&FechaCese=" + FechaCese + "&PeriododeVacaciones=" +
+                //      PeriododeVacaciones + "&FechaReingreso=" + FechaReingreso + "&Fecha_Ult_Actualizacion=" +
+                //      Fecha_Ult_Actualizacion + "&EsReingreso=" + EsReingreso + "&Tipo_Cuenta=" + Tipo_Cuenta +
+                //      "&FormaCalculo13ro=" + FormaCalculo13ro + "&FormaCalculo14ro=" + FormaCalculo14to +
+                //      "&BoniComplementaria=" + BoniComplementaria + "&BoniEspecial=" + BoniEspecial +
+                //      "&Remuneracion_Minima=" + Remuneracion_Minima + "&Fondo_Reserva=" + Fondo_Reserva +
+                //      "&Mensaje=" + Mensaje;
 
-                GetJsonData(url);
+
                 int id = 1;
                 return View("IndexInfoTrabajador", new
                 {
-                    data = data,
+                    data = result,
                     id = id
                 });
             }
 
             return View();
         }
+        private async Task<string> PostDataAsync(string url, Dictionary<string, string> data)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var content = new FormUrlEncodedContent(data);
+                var response = await httpClient.PostAsync(url, content);
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
 
-        public IActionResult TrabajadoresUpdate(int id, int id2)
+
+            public IActionResult TrabajadoresUpdate(int id, int id2)
         {
             if (Request.Method == "POST")
             {
@@ -362,7 +418,7 @@ namespace Avance.Controllers
                 string Fondo_Reserva = Request.Form["Fondo_Reserva"];
                 string Mensaje = Request.Form["Mensaje"];
 
-                var url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + COMP_Codigo;
+                var url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + 2;
                 var data = GetJsonData(url);
 
                 // Buscar código de categoría ocupacional
