@@ -19,7 +19,7 @@
 }
 
 @section agregar {
-    <a href="@Url.Action("PagTrabajadoresCreate", "TrabajadorController", new { id = ViewBag.Id })" class="btn btn-success">Agregar</a>
+    <a href="@Url.Action("PagTrabajadoresCreate", "Trabajador", new { id = 2 })" class="btn btn-success">Agregar</a>
 }
 
 @section body {
@@ -118,8 +118,8 @@
                     <td>@datos.CuotaCuentaCorriente</td>
                     <td>@datos.Fondo_Reserva</td>
                     <td>
-                        <a href="@Url.Action("PagTrabajadoresEdit", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-primary">Editar</a>
-                        <a href="@Url.Action("PagTrabajadoresDelete", "TrabajadorController", new { id = datos.Id_Trabajador })" class="btn btn-danger">Eliminar</a>
+                        <a href="@Url.Action("TrabajadoresUpdate", "Trabajador", new { id = datos.Id_Trabajador })" class="btn btn-primary">Editar</a>
+                        <a href="@Url.Action("PagTrabajadoresDelete", "Trabajador", new { id = datos.Id_Trabajador })" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
             }

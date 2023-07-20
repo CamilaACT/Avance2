@@ -15,6 +15,15 @@ namespace Avance.Controllers
             return View();
         }
 
+        private List<T> GetJsonData<T>(string url)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = client.GetStringAsync(url).GetAwaiter().GetResult();
+                return JArray.Parse(response).ToObject<List<T>>();
+            }
+        }
+
         public async Task<ActionResult> PagBuscarTrabajadores()
         {
             var url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/GetEmisor";
@@ -61,46 +70,134 @@ namespace Avance.Controllers
         public ActionResult PagTrabajadoresCreate(string id)
         {
             var url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/GetEmisor";
-            var client = new HttpClient();
-            var response = client.GetStringAsync(url).GetAwaiter().GetResult();
+            var client1 = new HttpClient();
+            var response = client1.GetStringAsync(url).GetAwaiter().GetResult();
             var dataSucursal = JArray.Parse(response);
 
-            // Fetch other data objects
-            var dataTipoTrabajador = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TipoTrabajador");
-            var dataGenero = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/Genero");
-            var dataOcupaciones = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/Ocupaciones");
-            var dataNivelSalarial = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/NivelSalarial");
-            var dataTipoContrato = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TipoContrato");
-            var dataTipoCese = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TipoCese");
-            var dataEstadoCivil = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/EstadoCivil");
-            var dataTipoComision = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TipoComision");
-            var dataPeriodoVacaciones = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/PeriodoVacaciones");
-            var dataEsReingreso = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/EsReingreso");
-            var dataTipoCuenta = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TipoCuenta");
-            var dataDecimoTerceroDecimoCuarto = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/DecimoTerceroDecimoCuarto");
-            var dataCentroCostos = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosSelect");
-            var dataCategoriaOcupacional = GetJsonData("http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CategoriaOcupacional");
+            var baseUrl = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/";
+
+            using (var client = new HttpClient())
+            {
+                // Fetch data for TipoTrabajador
+                var tipoTrabajadorUrl = baseUrl + "TipoTrabajador";
+                var tipoTrabajadorResponse = client.GetStringAsync(tipoTrabajadorUrl).GetAwaiter().GetResult();
+                var dataTipoTrabajador = JArray.Parse(tipoTrabajadorResponse);
+                ViewBag.dataTipoTrabajador = dataTipoTrabajador;
+
+                // Fetch data for Genero
+                var generoUrl = baseUrl + "Genero";
+                var generoResponse = client.GetStringAsync(generoUrl).GetAwaiter().GetResult();
+                var dataGenero = JArray.Parse(generoResponse);
+                ViewBag.dataGenero = dataGenero;
+
+                // Fetch data for Ocupaciones
+                var ocupacionesUrl = baseUrl + "Ocupaciones";
+                var ocupacionesResponse = client.GetStringAsync(ocupacionesUrl).GetAwaiter().GetResult();
+                var dataOcupaciones = JArray.Parse(ocupacionesResponse);
+                ViewBag.dataOcupaciones = dataOcupaciones;
+
+                // Fetch data for NivelSalarial
+                var nivelSalarialUrl = baseUrl + "NivelSalarial";
+                var nivelSalarialResponse = client.GetStringAsync(nivelSalarialUrl).GetAwaiter().GetResult();
+                var dataNivelSalarial = JArray.Parse(nivelSalarialResponse);
+                ViewBag.dataNivelSalarial = dataNivelSalarial;
+
+                // Fetch data for TipoContrato
+                var tipoContratoUrl = baseUrl + "TipoContrato";
+                var tipoContratoResponse = client.GetStringAsync(tipoContratoUrl).GetAwaiter().GetResult();
+                var dataTipoContrato = JArray.Parse(tipoContratoResponse);
+                ViewBag.dataTipoContrato = dataTipoContrato;
+
+                // Fetch data for TipoCese
+                var tipoCeseUrl = baseUrl + "TipoCese";
+                var tipoCeseResponse = client.GetStringAsync(tipoCeseUrl).GetAwaiter().GetResult();
+                var dataTipoCese = JArray.Parse(tipoCeseResponse);
+                ViewBag.dataTipoCese = dataTipoCese;
+
+                // Fetch data for EstadoCivil
+                var estadoCivilUrl = baseUrl + "EstadoCivil";
+                var estadoCivilResponse = client.GetStringAsync(estadoCivilUrl).GetAwaiter().GetResult();
+                var dataEstadoCivil = JArray.Parse(estadoCivilResponse);
+                ViewBag.dataEstadoCivil = dataEstadoCivil;
+
+                // Fetch data for TipoComision
+                var tipoComisionUrl = baseUrl + "TipoComision";
+                var tipoComisionResponse = client.GetStringAsync(tipoComisionUrl).GetAwaiter().GetResult();
+                var dataTipoComision = JArray.Parse(tipoComisionResponse);
+                ViewBag.dataTipoComision = dataTipoComision;
+
+                // Fetch data for PeriodoVacaciones
+                var periodoVacacionesUrl = baseUrl + "PeriodoVacaciones";
+                var periodoVacacionesResponse = client.GetStringAsync(periodoVacacionesUrl).GetAwaiter().GetResult();
+                var dataPeriodoVacaciones = JArray.Parse(periodoVacacionesResponse);
+                ViewBag.dataPeriodoVacaciones = dataPeriodoVacaciones;
+
+                // Fetch data for EsReingreso
+                var esReingresoUrl = baseUrl + "EsReingreso";
+                var esReingresoResponse = client.GetStringAsync(esReingresoUrl).GetAwaiter().GetResult();
+                var dataEsReingreso = JArray.Parse(esReingresoResponse);
+                ViewBag.dataEsReingreso = dataEsReingreso;
+
+                // Fetch data for TipoCuenta
+                var tipoCuentaUrl = baseUrl + "TipoCuenta";
+                var tipoCuentaResponse = client.GetStringAsync(tipoCuentaUrl).GetAwaiter().GetResult();
+                var dataTipoCuenta = JArray.Parse(tipoCuentaResponse);
+                ViewBag.dataTipoCuenta = dataTipoCuenta;
+
+                // Fetch data for DecimoTerceroDecimoCuarto
+                var decimoTerceroDecimoCuartoUrl = baseUrl + "DecimoTerceroDecimoCuarto";
+                var decimoTerceroDecimoCuartoResponse = client.GetStringAsync(decimoTerceroDecimoCuartoUrl).GetAwaiter().GetResult();
+                var dataDecimoTerceroDecimoCuarto = JArray.Parse(decimoTerceroDecimoCuartoResponse);
+                ViewBag.dataDecimoTerceroDecimoCuarto = dataDecimoTerceroDecimoCuarto;
+
+                // Fetch data for CentroCostos
+                var centroCostosUrl = baseUrl + "CentroCostosSelect";
+                var centroCostosResponse = client.GetStringAsync(centroCostosUrl).GetAwaiter().GetResult();
+                var dataCentroCostos = JArray.Parse(centroCostosResponse);
+                ViewBag.dataCentroCostos = dataCentroCostos;
+
+                // Fetch data for CategoriaOcupacional
+                var categoriaOcupacionalUrl = baseUrl + "CategoriaOcupacional";
+                var categoriaOcupacionalResponse = client.GetStringAsync(categoriaOcupacionalUrl).GetAwaiter().GetResult();
+                var dataCategoriaOcupacional = JArray.Parse(categoriaOcupacionalResponse);
+                ViewBag.dataCategoriaOcupacional = dataCategoriaOcupacional;
+
+                // Fetch data for EstadoTrabajador
+                var estadoTrabajadorUrl = baseUrl + "EstadoTrabajador";
+                var estadoTrabajadorResponse = client.GetStringAsync(estadoTrabajadorUrl).GetAwaiter().GetResult();
+                var dataEstadoTrabajador = JArray.Parse(estadoTrabajadorResponse);
+                ViewBag.dataEstadoTrabajador = dataEstadoTrabajador;
+
+                // Fetch data for FondoReserva
+                var fondoReservaUrl = baseUrl + "FondoReserva";
+                var fondoReservaResponse = client.GetStringAsync(fondoReservaUrl).GetAwaiter().GetResult();
+                var dataFondoReserva = JArray.Parse(fondoReservaResponse);
+                ViewBag.dataFondoReserva = dataFondoReserva;
+            }
 
             return View("IndexAgregarTrabajador", new
             {
                 id,
                 dataSucursal,
-                dataTipoTrabajador,
-                dataGenero,
-                dataOcupaciones,
-                dataCategoriaOcupacional,
-                dataCentroCostos,
-                dataNivelSalarial,
-                dataTipoContrato,
-                dataTipoCese,
-                dataEstadoCivil,
-                dataTipoComision,
-                dataPeriodoVacaciones,
-                dataEsReingreso,
-                dataTipoCuenta,
-                dataDecimoTerceroDecimoCuarto
+                ViewBag.dataTipoTrabajador,
+                ViewBag.dataGenero,
+                ViewBag.dataEstadoTrabajador,
+                ViewBag.dataOcupaciones,
+                ViewBag.dataCategoriaOcupacional,
+                ViewBag.dataCentroCostos,
+                ViewBag.dataNivelSalarial,
+                ViewBag.dataTipoContrato,
+                ViewBag.dataTipoCese,
+                ViewBag.dataEstadoCivil,
+                ViewBag.dataTipoComision,
+                ViewBag.dataPeriodoVacaciones,
+                ViewBag.dataEsReingreso,
+                ViewBag.dataTipoCuenta,
+                ViewBag.dataFondoReserva,
+                ViewBag.dataDecimoTerceroDecimoCuarto
             });
         }
+
 
         public IActionResult TrabajadoresPost()
         {
@@ -151,62 +248,47 @@ namespace Avance.Controllers
                 url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CategoriaOcupacional";
                 var dataCategoriaOcupacional = GetJsonData(url);
 
-                foreach (var item in dataCategoriaOcupacional)
+                var codigoCategoriaOcupacional = dataCategoriaOcupacional.FirstOrDefault(item => item["Descripcion"].ToString() == Codigo_Categoria_Ocupacion);
+                if (codigoCategoriaOcupacional != null)
                 {
-                    if (item["Descripcion"].ToString() == Codigo_Categoria_Ocupacion)
-                    {
-                        Codigo_Categoria_Ocupacion = item["Codigo"].ToString();
-                        break;
-                    }
+                    Codigo_Categoria_Ocupacion = codigoCategoriaOcupacional["Codigo"].ToString();
                 }
 
                 // Buscar código de ocupación
                 url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/Ocupaciones";
                 var dataOcupaciones = GetJsonData(url);
 
-                foreach (var item in dataOcupaciones)
+                var codigoOcupacion = dataOcupaciones.FirstOrDefault(item => item["Descripcion"].ToString() == Ocupacion);
+                if (codigoOcupacion != null)
                 {
-                    if (item["Descripcion"].ToString() == Ocupacion)
-                    {
-                        Ocupacion = item["Codigo"].ToString();
-                        break;
-                    }
+                    Ocupacion = codigoOcupacion["Codigo"].ToString();
                 }
 
                 // Buscar código de centro de costos
                 url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/CentroCostosSelect";
                 var dataCentroCostos = GetJsonData(url);
 
-                foreach (var item in dataCentroCostos)
+                var codigoCentroCostos = dataCentroCostos.FirstOrDefault(item => item["Descripcion"].ToString() == Centro_Costos);
+                if (codigoCentroCostos != null)
                 {
-                    if (item["Descripcion"].ToString() == Centro_Costos)
-                    {
-                        Centro_Costos = item["Codigo"].ToString();
-                        break;
-                    }
+                    Centro_Costos = codigoCentroCostos["Codigo"].ToString();
                 }
 
                 // Buscar forma de cálculo 13
                 url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/DecimoTerceroDecimoCuarto";
                 var dataDecimoTerceroDecimoCuarto = GetJsonData(url);
 
-                foreach (var item in dataDecimoTerceroDecimoCuarto)
+                var codigoFormaCalculo13ro = dataDecimoTerceroDecimoCuarto.FirstOrDefault(item => item["Descripcion"].ToString() == FormaCalculo13ro);
+                if (codigoFormaCalculo13ro != null)
                 {
-                    if (item["Descripcion"].ToString() == FormaCalculo13ro)
-                    {
-                        FormaCalculo13ro = item["Codigo"].ToString();
-                        break;
-                    }
+                    FormaCalculo13ro = codigoFormaCalculo13ro["Codigo"].ToString();
                 }
 
                 // Buscar forma de cálculo 14
-                foreach (var item in dataDecimoTerceroDecimoCuarto)
+                var codigoFormaCalculo14to = dataDecimoTerceroDecimoCuarto.FirstOrDefault(item => item["Descripcion"].ToString() == FormaCalculo14to);
+                if (codigoFormaCalculo14to != null)
                 {
-                    if (item["Descripcion"].ToString() == FormaCalculo14to)
-                    {
-                        FormaCalculo14to = item["Codigo"].ToString();
-                        break;
-                    }
+                    FormaCalculo14to = codigoFormaCalculo14to["Codigo"].ToString();
                 }
 
                 url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorInsert?COMP_Codigo=" + COMP_Codigo +
@@ -227,7 +309,7 @@ namespace Avance.Controllers
                       "&Mensaje=" + Mensaje;
 
                 GetJsonData(url);
-                int id = 0;
+                int id = 1;
                 return View("IndexInfoTrabajador", new
                 {
                     data = data,
@@ -372,7 +454,7 @@ namespace Avance.Controllers
             }
             else
             {
-                var url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + id;
+                var url = "http://apiservicios.ecuasolmovsa.com:3009/api/Varios/TrabajadorSelect?sucursal=" + 2;
                 var data = GetJsonData(url);
                 JObject data2 = new JObject();
 
