@@ -23,7 +23,7 @@
                 <select class="form-control" id="Tipo_trabajador" name="Tipo_trabajador">
                     @foreach (var tipo in ViewBag.dataTipoTrabajador)
                     {
-                        <option value="@tipo.">@tipo.Codigo</option>
+                        <option value="@tipo.Descripcion">@tipo.Codigo</option>
                     }
                 </select>
                 <label id="Apellido_Paterno" name="Apellido_Paterno">Apellido Paterno:</label>
@@ -48,7 +48,7 @@
                 <select class="form-control" id="Genero" name="Genero">
                     @foreach (var genero in ViewBag.dataGenero)
                     {
-                        <option value="@genero.id">@genero.Descripcion</option>
+                        <option value="@genero.Codigo">@genero.Descripcion</option>
                     }
                 </select>
             </div>
@@ -60,63 +60,63 @@
                 <select class="form-control" id="Codigo_Categoria_Ocupacion" name="Codigo_Categoria_Ocupacion">
                     @foreach (var categoria in ViewBag.dataCategoriaOcupacional)
                     {
-                        <option value="@categoria.id">@categoria.Descripcion</option>
+                        <option value="@categoria.Codigo">@categoria.Descripcion</option>
                     }
                 </select>
                 <label id="Ocupacion" name="Ocupacion">Ocupacion:</label>
                 <select class="form-control" id="Ocupacion" name="Ocupacion">
                     @foreach (var ocupacion in ViewBag.dataOcupaciones)
                     {
-                        <option value="@ocupacion.id">@ocupacion.Descripcion</option>
+                        <option value="@ocupacion.Codigo">@ocupacion.Descripcion</option>
                     }
                 </select>
                 <label id="Centro_Costos" name="Centro_Costos">Centro de Costos:</label>
                 <select class="form-control" id="Centro_Costos" name="Centro_Costos">
                     @foreach (var centro in ViewBag.datacentroCostos)
                     {
-                        <option value="@centro.id">@centro.NombreCentroCostos</option>
+                        <option value="@centro.Codigo">@centro.NombreCentroCostos</option>
                     }
                 </select>
                 <label id="Nivel_Salarial" name="Nivel_Salarial">Nivel Salarial:</label>
                 <select class="form-control" id="Nivel_Salarial" name="Nivel_Salarial">
                     @foreach (var nivel in ViewBag.dataNivelSalarial)
                     {
-                        <option value="@nivel.id">@nivel.Descripcion</option>
+                        <option value="@nivel.Codigo">@nivel.Descripcion</option>
                     }
                 </select>
                 <label id="EstadoTrabajador" name="EstadoTrabajador">Estado del Trabajador:</label>
                 <select class="form-control" id="EstadoTrabajador" name="EstadoTrabajador">
                     @foreach (var estado in ViewBag.dataEstadoTrabajador)
                     {
-                        <option value="@estado.id">@estado.Descripcion</option>
+                        <option value="@estado.Codigo">@estado.Descripcion</option>
                     }
                 </select>
                 <label id="Tipo_Contrato" name="Tipo_Contrato">Tipo de Contrato:</label>
                 <select class="form-control" id="Tipo_Contrato" name="Tipo_Contrato">
                     @foreach (var contrato in ViewBag.dataTipoContrato)
                     {
-                        <option value="@contrato.id">@contrato.Descripcion</option>
+                        <option value="@contrato.Codigo">@contrato.Descripcion</option>
                     }
                 </select>
                 <label id="Tipo_Cese" name="Tipo_Cese">Tipo de Cese:</label>
                 <select class="form-control" id="Tipo_Cese" name="Tipo_Cese">
                     @foreach (var cese in ViewBag.dataTipoCese)
                     {
-                        <option value="@cese.id">@cese.Descripcion</option>
+                        <option value="@cese.Codigo">@cese.Descripcion</option>
                     }
                 </select>
                 <label id="EstadoCivil" name="EstadoCivil">Estado Civil:</label>
                 <select class="form-control" id="EstadoCivil" name="EstadoCivil">
                     @foreach (var estado in ViewBag.dataEstadoCivil)
                     {
-                        <option value="@estado.id">@estado.Descripcion</option>
+                        <option value="@estado.Codigo">@estado.Descripcion</option>
                     }
                 </select>
                 <label id="TipodeComision" name="TipodeComision">Tipo de Comision:</label>
                 <select class="form-control" id="TipodeComision" name="TipodeComision">
                     @foreach (var comision in ViewBag.dataTipoComision)
                     {
-                        <option value="@comision.id">@comision.Codigo</option>
+                        <option value="@comision.Descripcion">@comision.Codigo</option>
                     }
                 </select>
                 <label id="FechaNacimiento" name="FechaNacimiento">Fecha de Nacimiento:</label>
@@ -132,7 +132,7 @@
                 <select class="form-control" id="PeriododeVacaciones" name="PeriododeVacaciones">
                     @foreach (var periodo in ViewBag.dataPeriodoVacaciones)
                     {
-                        <option value="@periodo.id">@periodo.Descripcion</option>
+                        <option value="@periodo.Codigo">@periodo.Descripcion</option>
                     }
                 </select>
                 <label id="FechaReingreso" name="FechaReingreso">Fecha de Reingreso:</label>
@@ -143,28 +143,28 @@
                 <select class="form-control" id="EsReingreso" name="EsReingreso">
                     @foreach (var reingreso in ViewBag.dataEsReingreso)
                     {
-                        <option value="@reingreso.id">@reingreso.Descripcion</option>
+                        <option value="@reingreso.Codigo">@reingreso.Descripcion</option>
                     }
                 </select>
                 <label id="Tipo_Cuenta" name="Tipo_Cuenta">Tipo de Cuenta:</label>
                 <select class="form-control" id="Tipo_Cuenta" name="Tipo_Cuenta">
                     @foreach (var cuenta in ViewBag.dataTipoCuenta)
                     {
-                        <option value="@cuenta.id">@cuenta.Descripcion</option>
+                        <option value="@cuenta.Codigo">@cuenta.Descripcion</option>
                     }
                 </select>
                 <label id="FormaCalculo13ro" name="FormaCalculo13ro">Forma de Calculo 13ro:</label>
                 <select class="form-control" id="FormaCalculo13ro" name="FormaCalculo13ro">
                     @foreach (var calculo in ViewBag.dataDecimoTerceroDecimoCuarto)
                     {
-                        <option value="@calculo.id">@calculo.Descripcion</option>
+                        <option value="@calculo.Codigo">@calculo.Descripcion</option>
                     }
                 </select>
                 <label id="FormaCalculo14to" name="FormaCalculo14to">Forma de Calculo 14to:</label>
                 <select class="form-control" id="FormaCalculo14to" name="FormaCalculo14to">
                     @foreach (var calculo in ViewBag.dataDecimoTerceroDecimoCuarto)
                     {
-                        <option value="@calculo.id">@calculo.Descripcion</option>
+                        <option value="@calculo.Codigo">@calculo.Descripcion</option>
                     }
                 </select>
                 <label id="BoniComplementaria" name="BoniComplementaria">Boni Complementaria:</label>
@@ -177,7 +177,7 @@
                 <select class="form-control" id="Fondo_Reserva" name="Fondo_Reserva">
                     @foreach (var fondo in ViewBag.dataFondoReserva)
                     {
-                        <option value="@fondo.id">@fondo.Descripcion</option>
+                        <option value="@fondo.Codigo">@fondo.Descripcion</option>
                     }
                 </select>
                 <label id="Mensaje" name="Mensaje">Mensaje:</label>
